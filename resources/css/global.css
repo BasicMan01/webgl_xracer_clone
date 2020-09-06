@@ -1,0 +1,67 @@
+* {
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+html, body { height: 100%; margin: 0; padding: 0; width: 100%; }
+
+body { font-family: 'Arial'; font-size: 14px; line-height: 1.7; }
+body.webgl { overflow: hidden; }
+
+#webGlCanvas  { font-family: 'Courier New'; font-size: 11px; height: 100%; width: 100%; }
+
+.app-banner {
+	background-color: white;
+	bottom: 0;
+	box-shadow: 0px 0px 12px 4px #888888;
+	display: none;
+	padding: 10px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+.app-banner-controls { white-space: nowrap; }
+.app-banner-controls input[type=button] {
+	background-color: white;
+	border: 1px solid grey;
+	border-radius: 8px;
+	font-size: 18px;
+	margin: 10px 5px 0 5px;
+	padding: 10px 20px;
+}
+
+.app-banner-controls #btnAccept { background-color: #AAFFAA; }
+.app-banner-controls #btnDecline { background-color: #FFAAAA; }
+.app-banner-controls #btnRefresh { background-color: #AAFFAA; }
+
+.btnHome {
+	background-color: rgba(0, 0, 0, 0);
+	border: 2px solid grey;
+	display: none;
+	font-family: 'Courier New';
+	font-size: 14px;
+	font-weight: bold;
+	left: 0;
+	margin: 5px;
+	position: absolute;
+	top: 0;
+}
+
+@media (min-width: 768px) {
+	.btnHome {
+		font-size: 22px;
+	}
+}
+
+@media (min-width: 992px) {
+	.btnHome {
+		font-size: 30px;
+	}
+}
+
+@media (min-width: 1200px) {
+	.btnHome {
+		font-size: 38px;
+	}
+}

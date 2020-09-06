@@ -1,0 +1,15 @@
+{
+	"defaultLanguage": "en",
+	"defaultFont": {
+		"family": "Courier New",
+		"size": "30px",
+		"weight": "700",
+		"baseline": "top",
+		"left": 0,
+		"top": 0
+	},
+	"languages": [
+		"de",
+		"en"
+	]
+}
