@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	let reload = false;
 	let controller;
 
-	controller = new Controller('BETA');
-
 	document.getElementById('btnRefresh').addEventListener('click', () => {
 		reload = true;
 

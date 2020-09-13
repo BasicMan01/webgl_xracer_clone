@@ -145,10 +145,9 @@ class GameView extends BaseView {
 			for (let x = 0; x <= Constants.GAME_TERRAIN_SIZE_X; ++x) {
 				this.cubes[z][x].position.set(x * 3 - 60, 0, z * -3);
 				this.cubes[z][x].userData.bb = new THREE.Box3();
+				this.cubes[z][x].userData.obstacle = false;
 				this.setStartHeight(this.cubes[z][x]);
 			}
-
-			this.cubes[z].obstacle = -1;
 		}
 	}
 
@@ -219,10 +218,33 @@ class GameView extends BaseView {
 
 					this.cubes[this.cubes.length-1][n].scale.y = 20;
 					this.cubes[this.cubes.length-1][n].position.y = 10;
+					this.cubes[this.cubes.length-1][n].userData.obstacle = true;
 
 					this.computeBoundingBox(this.cubes[this.cubes.length-1][n]);
+				}
 
-					this.cubes[this.cubes.length-1].obstacle = n;
+				if (this.cameraGroup.position.x < this.cubes[0][20].position.x) {
+					let newXPosition = this.cubes[0][0].position.x - 3.0;
+
+					for (let i = 0; i < this.cubes.length; ++i) {
+						this.cubes[i][40].position.x = newXPosition;
+						this.cubes[i].unshift(this.cubes[i][40]);
+						this.cubes[i].pop();
+
+						this.computeBoundingBox(this.cubes[i][0]);
+					}
+				}
+
+				if (this.cameraGroup.position.x > this.cubes[0][20].position.x) {
+					let newXPosition = this.cubes[0][40].position.x + 3.0;
+
+					for (let i = 0; i < this.cubes.length; ++i) {
+						this.cubes[i][0].position.x = newXPosition;
+						this.cubes[i].push(this.cubes[i][0]);
+						this.cubes[i].shift();
+
+						this.computeBoundingBox(this.cubes[i][this.cubes[i].length-1]);
+					}
 				}
 
 				this.updateTextures();
@@ -270,14 +292,17 @@ class GameView extends BaseView {
 	}
 
 	isCollision() {
-		let targets = [this.cubes[2], this.cubes[3], this.cubes[4]];
+		let targetRows = [2, 3, 4];
+		let targetCols = [19, 20, 21];
 
 		this.computeBoundingBox(this.ship.children[0]);
 
-		for (let i = 0; i < targets.length; ++i) {
-			if (targets[i].obstacle > -1) {
-				if (this.aabbOverlapping(this.ship.children[0].userData.bb, targets[i][targets[i].obstacle].userData.bb)) {
-					return true;
+		for (let z = 0; z < targetRows.length; ++z) {
+			for (let x = 0; x < targetCols.length; ++x) {
+				if (this.cubes[targetRows[z]][targetCols[x]].userData.obstacle) {
+					if (this.aabbOverlapping(this.ship.children[0].userData.bb, this.cubes[targetRows[z]][targetCols[x]].userData.bb)) {
+						return true;
+					}
 				}
 			}
 		}

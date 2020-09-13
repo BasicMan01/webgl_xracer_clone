@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v.0.1';
+const CACHE_VERSION = 'v.0.2';
 const CACHE_NAME = 'xracer_clone/' + CACHE_VERSION
 
 self.addEventListener('install', (event) => {
