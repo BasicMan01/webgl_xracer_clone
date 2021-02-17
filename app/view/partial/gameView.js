@@ -1,5 +1,5 @@
-import * as THREE from '../../../lib/threejs_119/build/three.module.js';
-import { FBXLoader } from '../../../lib/threejs_119/examples/jsm/loaders/FBXLoader.js';
+import * as THREE from '../../../lib/threejs_125/build/three.module.js';
+import { FBXLoader } from '../../../lib/threejs_125/examples/jsm/loaders/FBXLoader.js';
 
 import FontTexture from '../../../lib/rdo/fontTexture.js';
 
@@ -115,7 +115,7 @@ class GameView extends BaseView {
 	}
 
 	createTerrain() {
-		let geometry = new THREE.BoxGeometry(3, 1, 3);
+		let geometry = new THREE.BoxGeometry(Constants.BLOCK_SIZE, 1, Constants.BLOCK_SIZE);
 		let material = new THREE.MeshStandardMaterial( { color: '#FFFFFF' } );
 
 		for (let z = 0; z <= Constants.GAME_TERRAIN_SIZE_Z; ++z) {
@@ -143,7 +143,7 @@ class GameView extends BaseView {
 
 		for (let z = 0; z <= Constants.GAME_TERRAIN_SIZE_Z; ++z) {
 			for (let x = 0; x <= Constants.GAME_TERRAIN_SIZE_X; ++x) {
-				this.cubes[z][x].position.set(x * 3 - 60, 0, z * -3);
+				this.cubes[z][x].position.set(x * Constants.BLOCK_SIZE - 60, 0, z * -Constants.BLOCK_SIZE);
 				this.cubes[z][x].userData.bb = new THREE.Box3();
 				this.cubes[z][x].userData.obstacle = false;
 				this.setStartHeight(this.cubes[z][x]);
@@ -202,9 +202,9 @@ class GameView extends BaseView {
 				}
 
 				if (this.cameraGroup.position.z < this.cubes[0][0].position.z) {
-					let newZPosition = this.cubes[this.cubes.length-1][0].position.z - 3.0;
+					let newZPosition = this.cubes[this.cubes.length-1][0].position.z - Constants.BLOCK_SIZE;
 
-					for (let i = 0; i < this.cubes[0].length; ++i) {
+					for (i = 0; i < this.cubes[0].length; ++i) {
 						this.cubes[0][i].position.z = newZPosition;
 						this.setStartHeight(this.cubes[0][i]);
 					}
@@ -213,22 +213,29 @@ class GameView extends BaseView {
 					this.cubes.shift();
 
 
-					// random obstacle
-					let n = Math.floor(Math.random() * Constants.GAME_TERRAIN_SIZE_X) + 1;
 
-					this.cubes[this.cubes.length-1][n].scale.y = 20;
-					this.cubes[this.cubes.length-1][n].position.y = 10;
-					this.cubes[this.cubes.length-1][n].userData.obstacle = true;
+					let obstacleCount = Math.ceil(this.points / 1000);
 
-					this.computeBoundingBox(this.cubes[this.cubes.length-1][n]);
+					for (i = 0; i < obstacleCount; ++i) {
+						// random obstacle
+						let n = Math.floor(Math.random() * Constants.GAME_TERRAIN_SIZE_X) + 1;
+
+						this.cubes[this.cubes.length-1][n].scale.y = 20;
+						this.cubes[this.cubes.length-1][n].position.y = 10;
+						this.cubes[this.cubes.length-1][n].userData.obstacle = true;
+
+						this.computeBoundingBox(this.cubes[this.cubes.length-1][n]);
+					}
+
+
 				}
 
 				if (this.cameraGroup.position.x < this.cubes[0][20].position.x) {
-					let newXPosition = this.cubes[0][0].position.x - 3.0;
+					let newXPosition = this.cubes[0][0].position.x - Constants.BLOCK_SIZE;
 
 					for (let i = 0; i < this.cubes.length; ++i) {
-						this.cubes[i][40].position.x = newXPosition;
-						this.cubes[i].unshift(this.cubes[i][40]);
+						this.cubes[i][Constants.GAME_TERRAIN_SIZE_X].position.x = newXPosition;
+						this.cubes[i].unshift(this.cubes[i][Constants.GAME_TERRAIN_SIZE_X]);
 						this.cubes[i].pop();
 
 						this.computeBoundingBox(this.cubes[i][0]);
@@ -236,7 +243,7 @@ class GameView extends BaseView {
 				}
 
 				if (this.cameraGroup.position.x > this.cubes[0][20].position.x) {
-					let newXPosition = this.cubes[0][40].position.x + 3.0;
+					let newXPosition = this.cubes[0][Constants.GAME_TERRAIN_SIZE_X].position.x + Constants.BLOCK_SIZE;
 
 					for (let i = 0; i < this.cubes.length; ++i) {
 						this.cubes[i][0].position.x = newXPosition;
