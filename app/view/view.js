@@ -1,6 +1,7 @@
-import * as THREE from '../../lib/threejs_125/build/three.module.js';
-import Stats from '../../lib/threejs_125/examples/jsm/libs/stats.module.js';
-import { StereoEffect } from '../../lib/threejs_125/examples/jsm/effects/StereoEffect.js';
+import * as THREE from 'three';
+
+import Stats from '../../lib/threejs_158/examples/jsm/libs/stats.module.js';
+import { StereoEffect } from '../../lib/threejs_158/examples/jsm/effects/StereoEffect.js';
 
 import Observable from '../classes/observable.js';
 import FontTexture from '../../lib/rdo/fontTexture.js';

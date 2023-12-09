@@ -1,4 +1,4 @@
-import * as THREE from '../../../lib/threejs_125/build/three.module.js';
+import * as THREE from 'three';
 
 import helper from '../../../lib/rdo/helper.js';
 

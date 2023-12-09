@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v.0.4.0';
+const CACHE_VERSION = 'v.0.5.0';
 const CACHE_NAME = 'xracer_clone/' + CACHE_VERSION
 
 self.addEventListener('install', (event) => {
@@ -27,12 +27,12 @@ self.addEventListener('install', (event) => {
 				'/webgl_xracer_clone/lib/rdo/fontTexture.js',
 				'/webgl_xracer_clone/lib/rdo/helper.js',
 				'/webgl_xracer_clone/lib/rdo/sound.js',
-				'/webgl_xracer_clone/lib/threejs_125/build/three.module.js',
-				'/webgl_xracer_clone/lib/threejs_125/examples/jsm/curves/NURBSCurve.js',
-				'/webgl_xracer_clone/lib/threejs_125/examples/jsm/curves/NURBSUtils.js',
-				'/webgl_xracer_clone/lib/threejs_125/examples/jsm/effects/StereoEffect.js',
-				'/webgl_xracer_clone/lib/threejs_125/examples/jsm/libs/fflate.module.min.js',
-				'/webgl_xracer_clone/lib/threejs_125/examples/jsm/loaders/FBXLoader.js',
+				'/webgl_xracer_clone/lib/threejs_158/build/three.module.js',
+				'/webgl_xracer_clone/lib/threejs_158/examples/jsm/curves/NURBSCurve.js',
+				'/webgl_xracer_clone/lib/threejs_158/examples/jsm/curves/NURBSUtils.js',
+				'/webgl_xracer_clone/lib/threejs_158/examples/jsm/effects/StereoEffect.js',
+				'/webgl_xracer_clone/lib/threejs_158/examples/jsm/libs/fflate.module.js',
+				'/webgl_xracer_clone/lib/threejs_158/examples/jsm/loaders/FBXLoader.js',
 				'/webgl_xracer_clone/resources/config/config.json',
 				'/webgl_xracer_clone/resources/css/global.css',
 				'/webgl_xracer_clone/resources/icon/icon_32.png',

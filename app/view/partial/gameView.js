@@ -1,5 +1,6 @@
-import * as THREE from '../../../lib/threejs_125/build/three.module.js';
-import { FBXLoader } from '../../../lib/threejs_125/examples/jsm/loaders/FBXLoader.js';
+import * as THREE from 'three';
+
+import { FBXLoader } from '../../../lib/threejs_158/examples/jsm/loaders/FBXLoader.js';
 
 import FontTexture from '../../../lib/rdo/fontTexture.js';
 
@@ -89,6 +90,7 @@ class GameView extends BaseView {
 
 		fbxLoader.load('resources/model/star_wars_interceptor.fbx', function(object) {
 			this.ship = object;
+			console.log(this.ship);
 			this.ship.children[0].userData.bb = new THREE.Box3();
 
 			this.scene.add(this.ship);
