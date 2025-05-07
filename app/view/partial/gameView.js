@@ -90,7 +90,6 @@ class GameView extends BaseView {
 
 		fbxLoader.load('resources/model/star_wars_interceptor.fbx', function(object) {
 			this.ship = object;
-			console.log(this.ship);
 			this.ship.children[0].userData.bb = new THREE.Box3();
 
 			this.scene.add(this.ship);
@@ -172,7 +171,7 @@ class GameView extends BaseView {
 
 			case Constants.GAME_STATUS_RUN:
 				if (this.deviceOrientationData !== null && this.deviceOrientationData.beta) {
-					betaSin = -Math.sin(THREE.Math.degToRad(this.deviceOrientationData.beta));
+					betaSin = -Math.sin(THREE.MathUtils.degToRad(this.deviceOrientationData.beta));
 				} else if (this.keyLeft) {
 					betaSin = 0.2;
 				} else if (this.keyRight) {
